@@ -25,4 +25,12 @@
     <system:String x:Key="Library.SettingsDescription">V&#x00E1;laszd ki a tartalom t&#x00ED;pus&#x00E1;t, majd egy olvashat&#x00F3; helyi vagy h&#x00E1;l&#x00F3;zati mapp&#x00E1;t.</system:String>
     <system:String x:Key="Library.EmptySettings">M&#x00E9;g nincs be&#x00E1;ll&#x00ED;tott m&#x00E9;diat&#x00E1;rmappa.</system:String>
     <system:String x:Key="Shell.Placeholder">Ez a fel&#x00FC;let a k&#x00F6;vetkez&#x0151; funkcion&#x00E1;lis szeletben kap tartalmat.</system:String>
+    <system:String x:Key="Scan.Heading">H&#x00E1;tt&#x00E9;rben fut&#x00F3; vizsg&#x00E1;lat</system:String>
+    <system:String x:Key="Scan.Start">Vizsg&#x00E1;lat ind&#x00ED;t&#x00E1;sa</system:String>
+    <system:String x:Key="Scan.Pause">Sz&#x00FC;net</system:String>
+    <system:String x:Key="Scan.Resume">Folytat&#x00E1;s</system:String>
+    <system:String x:Key="Scan.Cancel">Megszak&#x00ED;t&#x00E1;s</system:String>
+    <system:String x:Key="Browse.Eyebrow">HELYBEN FELFEDEZETT TARTALOM</system:String>
+    <system:String x:Key="Browse.Description">A c&#x00ED;mek f&#x00E1;jln&#x00E9;vb&#x0151;l sz&#x00E1;rmaz&#x00F3;, ellen&#x0151;rizhet&#x0151; jel&#x00F6;ltek. A technikai vizsg&#x00E1;lat &#x00E9;s metaadat-egyeztet&#x00E9;s k&#x00E9;s&#x0151;bbi l&#x00E9;p&#x00E9;s.</system:String>
+    <system:String x:Key="Browse.Empty">Ebben a kateg&#x00F3;ri&#x00E1;ban m&#x00E9;g nincs indexelt m&#x00E9;diaf&#x00E1;jl.</system:String>
 </ResourceDictionary>

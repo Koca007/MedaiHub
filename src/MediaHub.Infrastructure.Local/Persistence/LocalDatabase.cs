@@ -4,7 +4,7 @@ namespace MediaHub.Infrastructure.Local.Persistence;
 
 public sealed class LocalDatabase : IDisposable
 {
-    private const int CurrentSchemaVersion = 1;
+    private const int CurrentSchemaVersion = 2;
     private readonly SemaphoreSlim _initializationGate = new(1, 1);
     private bool _isInitialized;
 
@@ -76,6 +76,35 @@ public sealed class LocalDatabase : IDisposable
 
                 CREATE UNIQUE INDEX IF NOT EXISTS ux_library_roots_normalized_path
                     ON library_roots(normalized_path);
+
+                CREATE TABLE IF NOT EXISTS media_files (
+                    id TEXT PRIMARY KEY NOT NULL,
+                    library_root_id TEXT NOT NULL,
+                    original_path TEXT NOT NULL,
+                    normalized_path TEXT NOT NULL COLLATE NOCASE,
+                    file_size_bytes INTEGER NOT NULL CHECK (file_size_bytes >= 0),
+                    modified_at_utc TEXT NOT NULL,
+                    candidate_kind INTEGER NOT NULL CHECK (candidate_kind BETWEEN 0 AND 2),
+                    candidate_title TEXT NOT NULL,
+                    release_year INTEGER NULL,
+                    season_number INTEGER NULL,
+                    episode_numbers TEXT NOT NULL,
+                    resolution TEXT NULL,
+                    source TEXT NULL,
+                    codec TEXT NULL,
+                    confidence REAL NOT NULL CHECK (confidence >= 0 AND confidence <= 1),
+                    last_seen_at_utc TEXT NOT NULL,
+                    FOREIGN KEY (library_root_id) REFERENCES library_roots(id)
+                );
+
+                CREATE UNIQUE INDEX IF NOT EXISTS ux_media_files_normalized_path
+                    ON media_files(normalized_path);
+
+                CREATE INDEX IF NOT EXISTS ix_media_files_library_root
+                    ON media_files(library_root_id);
+
+                CREATE INDEX IF NOT EXISTS ix_media_files_last_seen
+                    ON media_files(last_seen_at_utc DESC);
                 """;
             await command.ExecuteNonQueryAsync(cancellationToken).ConfigureAwait(false);
 

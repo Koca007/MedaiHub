@@ -8,6 +8,8 @@ using MediaHub.Application.Library;
 using MediaHub.Infrastructure.Local;
 using MediaHub.Infrastructure.Local.Library;
 using MediaHub.Infrastructure.Local.Persistence;
+using MediaHub.Infrastructure.Local.Scanning;
+using MediaHub.Scanner.Pipeline;
 using Microsoft.Data.Sqlite;
 
 namespace MediaHub.App;
@@ -45,12 +47,19 @@ public partial class App : System.Windows.Application, IDisposable
             await database.InitializeAsync();
 
             var repository = new SqliteLibraryRootRepository(database);
+            var mediaRepository = new SqliteMediaFileRepository(database);
             var inspector = new FileSystemLibraryPathInspector();
             var catalog = new LibraryRootCatalog(repository, inspector, TimeProvider.System);
+            var scanner = new LibraryScanner(
+                mediaRepository,
+                new FileStabilityChecker(TimeProvider.System),
+                TimeProvider.System);
             var safeMode = e.Args.Any(
                 argument => string.Equals(argument, "--safe-mode", StringComparison.OrdinalIgnoreCase));
             var viewModel = new MainWindowViewModel(
                 catalog,
+                mediaRepository,
+                scanner,
                 new WindowsFolderPicker(),
                 safeMode);
 

@@ -46,6 +46,40 @@
                 </Grid>
             </Border>
         </DataTemplate>
+
+        <DataTemplate x:Key="MediaFileCardTemplate">
+            <Border Margin="0,0,0,12"
+                    Padding="20,17"
+                    Style="{DynamicResource CardBorderStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Title}"
+                                   FontSize="17"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Margin="0,5,0,0"
+                                   Text="{Binding Path}"
+                                   TextTrimming="CharacterEllipsis"
+                                   Foreground="{DynamicResource Brush.Text.Muted}" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1"
+                                Margin="28,0,0,0"
+                                HorizontalAlignment="Right">
+                        <TextBlock HorizontalAlignment="Right"
+                                   Text="{Binding ContextLabel}"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource Brush.Accent.Primary}" />
+                        <TextBlock Margin="0,5,0,0"
+                                   HorizontalAlignment="Right"
+                                   Text="{Binding TechnicalLabel}"
+                                   Foreground="{DynamicResource Brush.Text.Secondary}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -251,6 +285,80 @@
                             </Grid>
                         </Border>
 
+                        <Border Margin="0,18,0,0"
+                                Padding="24"
+                                Style="{DynamicResource CardBorderStyle}">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock Text="{DynamicResource Scan.Heading}"
+                                                   FontSize="18"
+                                                   FontWeight="SemiBold" />
+                                        <TextBlock Margin="0,6,0,0"
+                                                   Text="{Binding ScanStatusText}"
+                                                   Foreground="{DynamicResource Brush.Text.Secondary}" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <Button Margin="0,0,8,0"
+                                                Command="{Binding ScanAllCommand}"
+                                                Content="{DynamicResource Scan.Start}"
+                                                Style="{DynamicResource PrimaryButtonStyle}" />
+                                        <Button Margin="0,0,8,0"
+                                                Command="{Binding PauseScanCommand}"
+                                                Content="{DynamicResource Scan.Pause}"
+                                                Style="{DynamicResource SecondaryButtonStyle}" />
+                                        <Button Margin="0,0,8,0"
+                                                Command="{Binding ResumeScanCommand}"
+                                                Content="{DynamicResource Scan.Resume}"
+                                                Style="{DynamicResource SecondaryButtonStyle}" />
+                                        <Button Command="{Binding CancelScanCommand}"
+                                                Content="{DynamicResource Scan.Cancel}"
+                                                Style="{DynamicResource SecondaryButtonStyle}" />
+                                    </StackPanel>
+                                </Grid>
+                                <ProgressBar Height="4"
+                                             Margin="0,18,0,0"
+                                             IsIndeterminate="{Binding IsScanning}"
+                                             Foreground="{DynamicResource Brush.Accent.Primary}"
+                                             Background="{DynamicResource Brush.Border.Subtle}" />
+                                <Grid Margin="0,12,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Foreground="{DynamicResource Brush.Text.Secondary}">
+                                        <Run Text="{Binding DiscoveredFiles}" />
+                                        <Run Text=" felfedezett" />
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1"
+                                               Margin="20,0,0,0"
+                                               Foreground="{DynamicResource Brush.Success}">
+                                        <Run Text="{Binding IndexedFiles}" />
+                                        <Run Text=" indexelt" />
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="2"
+                                               Margin="20,0,0,0"
+                                               Foreground="{DynamicResource Brush.Text.Muted}">
+                                        <Run Text="{Binding SkippedFiles}" />
+                                        <Run Text=" kihagyott" />
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="3"
+                                               Margin="24,0,0,0"
+                                               HorizontalAlignment="Right"
+                                               MaxWidth="400"
+                                               Text="{Binding CurrentScanPath}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Foreground="{DynamicResource Brush.Text.Muted}" />
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
                         <TextBlock Margin="0,28,0,14"
                                    Text="{DynamicResource Library.RootsHeading}"
                                    FontSize="20"
@@ -266,6 +374,45 @@
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsLibraryEmpty}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Visibility="{Binding IsBrowse, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel>
+                        <Border Padding="28" Style="{DynamicResource HeroBorderStyle}">
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource Browse.Eyebrow}"
+                                           FontWeight="SemiBold"
+                                           Foreground="{DynamicResource Brush.Accent.Primary}" />
+                                <TextBlock Margin="0,10,0,0"
+                                           Text="{Binding PageHeading}"
+                                           FontSize="30"
+                                           FontWeight="SemiBold" />
+                                <TextBlock Margin="0,8,0,0"
+                                           Text="{DynamicResource Browse.Description}"
+                                           Foreground="{DynamicResource Brush.Text.Secondary}" />
+                            </StackPanel>
+                        </Border>
+
+                        <ItemsControl Margin="0,24,0,0"
+                                      ItemsSource="{Binding VisibleMedia}"
+                                      ItemTemplate="{StaticResource MediaFileCardTemplate}" />
+                        <TextBlock Padding="28"
+                                   Text="{DynamicResource Browse.Empty}"
+                                   TextAlignment="Center"
+                                   Foreground="{DynamicResource Brush.Text.Muted}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsBrowseEmpty}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>
