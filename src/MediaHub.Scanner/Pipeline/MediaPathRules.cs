@@ -1,20 +1,9 @@
+using MediaHub.Application.Scanning;
+
 namespace MediaHub.Scanner.Pipeline;
 
 public static class MediaPathRules
 {
-    private static readonly HashSet<string> SupportedVideoExtensions =
-        new(StringComparer.OrdinalIgnoreCase)
-        {
-            ".mkv",
-            ".mp4",
-            ".m4v",
-            ".avi",
-            ".mov",
-            ".webm",
-            ".ts",
-            ".m2ts",
-        };
-
     private static readonly HashSet<string> IgnoredDirectoryNames =
         new(StringComparer.OrdinalIgnoreCase)
         {
@@ -38,7 +27,7 @@ public static class MediaPathRules
     ];
 
     public static bool IsSupportedVideo(string path) =>
-        SupportedVideoExtensions.Contains(Path.GetExtension(path));
+        SupportedMediaFiles.IsVideo(path);
 
     public static bool ShouldSkipDirectory(DirectoryInfo directory)
     {

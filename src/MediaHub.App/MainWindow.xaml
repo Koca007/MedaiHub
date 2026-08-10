@@ -190,15 +190,15 @@
                                            FontWeight="SemiBold"
                                            TextWrapping="Wrap" />
                                 <TextBlock Margin="0,16,0,30"
-                                           Text="{DynamicResource Onboarding.Description}"
+                                           Text="{DynamicResource Onboarding.AutoDescription}"
                                            FontSize="17"
                                            LineHeight="27"
                                            TextWrapping="Wrap"
                                            Foreground="{DynamicResource Brush.Text.Secondary}" />
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Width="190"
-                                            Command="{Binding AddFolderCommand}"
-                                            Content="{DynamicResource Onboarding.AddFolder}"
+                                    <Button Width="210"
+                                            Command="{Binding ScanAllCommand}"
+                                            Content="{DynamicResource Onboarding.ScanAutomatically}"
                                             Style="{DynamicResource PrimaryButtonStyle}" />
                                     <TextBlock Margin="18,0,0,0"
                                                VerticalAlignment="Center"
@@ -230,14 +230,13 @@
                                                    FontSize="28"
                                                    FontWeight="SemiBold" />
                                         <TextBlock Margin="0,9,0,0"
-                                                   Text="{DynamicResource Home.ReadyDescription}"
+                                                   Text="{DynamicResource Home.AutoReadyDescription}"
                                                    Foreground="{DynamicResource Brush.Text.Secondary}" />
                                     </StackPanel>
                                     <Button Grid.Column="1"
-                                            Command="{Binding NavigateCommand}"
-                                            CommandParameter="Settings"
-                                            Content="{DynamicResource Home.ManageLibraries}"
-                                            Style="{DynamicResource SecondaryButtonStyle}" />
+                                            Command="{Binding ScanAllCommand}"
+                                            Content="{DynamicResource Onboarding.ScanAutomatically}"
+                                            Style="{DynamicResource PrimaryButtonStyle}" />
                                 </Grid>
                             </Border>
 
@@ -305,7 +304,7 @@
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <Button Margin="0,0,8,0"
                                                 Command="{Binding ScanAllCommand}"
-                                                Content="{DynamicResource Scan.Start}"
+                                                Content="{DynamicResource Onboarding.ScanAutomatically}"
                                                 Style="{DynamicResource PrimaryButtonStyle}" />
                                         <Button Margin="0,0,8,0"
                                                 Command="{Binding PauseScanCommand}"

@@ -16,6 +16,9 @@
     <system:String x:Key="Onboarding.AddFolder">Mappa hozzáadása</system:String>
     <system:String x:Key="Status.Foundation">Fejlesztési alapverzió</system:String>
     <system:String x:Key="Status.LocalFirst">Helyi működés • fiók nélkül • a te adataid</system:String>
+    <system:String x:Key="Onboarding.AutoDescription">Ind&#x00ED;tsd el az automatikus vizsg&#x00E1;latot. A MediaHub megkeresi a vide&#x00F3;f&#x00E1;jlokat a szok&#x00E1;sos helyeken, majd filmekre &#x00E9;s sorozatokra rendezi &#x0151;ket.</system:String>
+    <system:String x:Key="Onboarding.ScanAutomatically">Automatikus vizsg&#x00E1;lat</system:String>
+    <system:String x:Key="Home.AutoReadyDescription">Az automatikus vizsg&#x00E1;lat felismeri az &#x00FA;j vide&#x00F3;f&#x00E1;jlokat. A m&#x00E9;diat&#x00E1;r internet n&#x00E9;lk&#x00FC;l is el&#x00E9;rhet&#x0151;.</system:String>
     <system:String x:Key="Onboarding.Eyebrow">HELYI M&#x00C9;DIAT&#x00C1;R</system:String>
     <system:String x:Key="Home.ReadyHeading">A m&#x00E9;diat&#x00E1;rad k&#x00E9;szen &#x00E1;ll</system:String>
     <system:String x:Key="Home.ReadyDescription">A mentett mapp&#x00E1;k ezen az eszk&#x00F6;z&#x00F6;n maradnak, &#x00E9;s internet n&#x00E9;lk&#x00FC;l is el&#x00E9;rhet&#x0151;k.</system:String>

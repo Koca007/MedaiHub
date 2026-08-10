@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Input;
 using MediaHub.App.Presentation;
 using MediaHub.App.Services;
@@ -14,6 +15,7 @@ public sealed class MainWindowViewModel : ObservableObject, IDisposable
     private readonly LibraryRootCatalog _catalog;
     private readonly IMediaFileRepository _mediaRepository;
     private readonly LibraryScanner _scanner;
+    private readonly IAutomaticLibraryRootDiscovery _automaticDiscovery;
     private readonly IFolderPicker _folderPicker;
     private readonly List<MediaFileItemViewModel> _allMedia = [];
     private readonly ScanControl _scanControl = new();
@@ -35,17 +37,20 @@ public sealed class MainWindowViewModel : ObservableObject, IDisposable
         LibraryRootCatalog catalog,
         IMediaFileRepository mediaRepository,
         LibraryScanner scanner,
+        IAutomaticLibraryRootDiscovery automaticDiscovery,
         IFolderPicker folderPicker,
         bool safeMode)
     {
         ArgumentNullException.ThrowIfNull(catalog);
         ArgumentNullException.ThrowIfNull(mediaRepository);
         ArgumentNullException.ThrowIfNull(scanner);
+        ArgumentNullException.ThrowIfNull(automaticDiscovery);
         ArgumentNullException.ThrowIfNull(folderPicker);
 
         _catalog = catalog;
         _mediaRepository = mediaRepository;
         _scanner = scanner;
+        _automaticDiscovery = automaticDiscovery;
         _folderPicker = folderPicker;
         SafeMode = safeMode;
 
@@ -60,7 +65,9 @@ public sealed class MainWindowViewModel : ObservableObject, IDisposable
 
         NavigateCommand = new RelayCommand(Navigate);
         AddFolderCommand = new AsyncRelayCommand(AddFolderAsync, () => !IsBusy && !IsScanning);
-        ScanAllCommand = new AsyncRelayCommand(ScanAllAsync, () => HasLibraryRoots && !IsScanning);
+        ScanAllCommand = new AsyncRelayCommand(
+            ScanAllAsync,
+            () => !IsBusy && !IsScanning);
         PauseScanCommand = new RelayCommand(
             _ => PauseScan(),
             _ => IsScanning && !IsScanPaused);
@@ -209,7 +216,7 @@ public sealed class MainWindowViewModel : ObservableObject, IDisposable
                 ? "Cs\u00f6kkentett m\u00f3d akt\u00edv. Az automatikus vizsg\u00e1lat nem indul el."
                 : HasLibraryRoots
                     ? $"{LibraryRoots.Count} m\u00e9diat\u00e1rmappa k\u00e9szen \u00e1ll."
-                    : "Adj hozz\u00e1 egy mapp\u00e1t a kezd\u00e9shez.";
+                    : "Kattints az automatikus vizsg\u00e1latra a m\u00e9diaf\u00e1jlok felismer\u00e9s\u00e9hez.";
         }
         finally
         {
@@ -291,7 +298,59 @@ public sealed class MainWindowViewModel : ObservableObject, IDisposable
 
     private async Task ScanAllAsync()
     {
-        var roots = await _catalog.GetAllAsync();
+        IReadOnlyList<LibraryRootSummary> roots = [];
+        IsBusy = true;
+        try
+        {
+            StatusMessage = "M\u00e9diahelyek automatikus keres\u00e9se...";
+            ScanStatusText = "A szok\u00e1sos vide\u00f3mapp\u00e1k \u00e9s meghajt\u00f3k ellen\u0151rz\u00e9se...";
+            var candidates = await _automaticDiscovery.DiscoverAsync();
+            foreach (var candidate in candidates)
+            {
+                await _catalog.AddAsync(candidate.Path, candidate.SuggestedKind);
+            }
+
+            roots = await _catalog.GetAllAsync();
+            LibraryRoots.Clear();
+            foreach (var root in roots)
+            {
+                LibraryRoots.Add(LibraryRootItemViewModel.FromSummary(root));
+            }
+
+            NotifyLibraryStateChanged();
+            if (roots.Count == 0)
+            {
+                StatusMessage = "Nem tal\u00e1ltam vide\u00f3f\u00e1jlokat a szok\u00e1sos helyeken.";
+                ScanStatusText = "Nem tal\u00e1lhat\u00f3 automatikusan felismerhet\u0151 m\u00e9diat\u00e1r.";
+                return;
+            }
+
+            StatusMessage =
+                $"{roots.Count} m\u00e9diahely k\u00e9szen \u00e1ll. A vizsg\u00e1lat indul.";
+        }
+        catch (Microsoft.Data.Sqlite.SqliteException)
+        {
+            StatusMessage = "A helyi adatb\u00e1zis nem tudta menteni a felismert mapp\u00e1kat.";
+            ScanStatusText = "Az automatikus felismer\u00e9s nem fejez\u0151d\u00f6tt be.";
+            return;
+        }
+        catch (UnauthorizedAccessException)
+        {
+            StatusMessage = "N\u00e9h\u00e1ny meghajt\u00f3 nem olvashat\u00f3.";
+            ScanStatusText = "Az automatikus felismer\u00e9s nem fejez\u0151d\u00f6tt be.";
+            return;
+        }
+        catch (IOException)
+        {
+            StatusMessage = "Egy meghajt\u00f3 jelenleg nem \u00e9rhet\u0151 el.";
+            ScanStatusText = "Az automatikus felismer\u00e9s nem fejez\u0151d\u00f6tt be.";
+            return;
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+
         await RunScansAsync(roots);
     }
 

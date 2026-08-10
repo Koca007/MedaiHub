@@ -50,6 +50,7 @@ public partial class App : System.Windows.Application, IDisposable
             var mediaRepository = new SqliteMediaFileRepository(database);
             var inspector = new FileSystemLibraryPathInspector();
             var catalog = new LibraryRootCatalog(repository, inspector, TimeProvider.System);
+            var automaticDiscovery = new WindowsMediaFolderDiscovery();
             var scanner = new LibraryScanner(
                 mediaRepository,
                 new FileStabilityChecker(TimeProvider.System),
@@ -60,6 +61,7 @@ public partial class App : System.Windows.Application, IDisposable
                 catalog,
                 mediaRepository,
                 scanner,
+                automaticDiscovery,
                 new WindowsFolderPicker(),
                 safeMode);
 
