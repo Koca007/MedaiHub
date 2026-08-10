@@ -16,6 +16,9 @@
     <system:String x:Key="Onboarding.AddFolder">Mappa hozzáadása</system:String>
     <system:String x:Key="Status.Foundation">Fejlesztési alapverzió</system:String>
     <system:String x:Key="Status.LocalFirst">Helyi működés • fiók nélkül • a te adataid</system:String>
+    <system:String x:Key="Onboarding.AutoDescription">Ind&#x00ED;tsd el az automatikus vizsg&#x00E1;latot. A MediaHub megkeresi a vide&#x00F3;f&#x00E1;jlokat a szok&#x00E1;sos helyeken, majd filmekre &#x00E9;s sorozatokra rendezi &#x0151;ket.</system:String>
+    <system:String x:Key="Onboarding.ScanAutomatically">Automatikus vizsg&#x00E1;lat</system:String>
+    <system:String x:Key="Home.AutoReadyDescription">Az automatikus vizsg&#x00E1;lat felismeri az &#x00FA;j vide&#x00F3;f&#x00E1;jlokat. A m&#x00E9;diat&#x00E1;r internet n&#x00E9;lk&#x00FC;l is el&#x00E9;rhet&#x0151;.</system:String>
     <system:String x:Key="Onboarding.Eyebrow">HELYI M&#x00C9;DIAT&#x00C1;R</system:String>
     <system:String x:Key="Home.ReadyHeading">A m&#x00E9;diat&#x00E1;rad k&#x00E9;szen &#x00E1;ll</system:String>
     <system:String x:Key="Home.ReadyDescription">A mentett mapp&#x00E1;k ezen az eszk&#x00F6;z&#x00F6;n maradnak, &#x00E9;s internet n&#x00E9;lk&#x00FC;l is el&#x00E9;rhet&#x0151;k.</system:String>
@@ -25,4 +28,12 @@
     <system:String x:Key="Library.SettingsDescription">V&#x00E1;laszd ki a tartalom t&#x00ED;pus&#x00E1;t, majd egy olvashat&#x00F3; helyi vagy h&#x00E1;l&#x00F3;zati mapp&#x00E1;t.</system:String>
     <system:String x:Key="Library.EmptySettings">M&#x00E9;g nincs be&#x00E1;ll&#x00ED;tott m&#x00E9;diat&#x00E1;rmappa.</system:String>
     <system:String x:Key="Shell.Placeholder">Ez a fel&#x00FC;let a k&#x00F6;vetkez&#x0151; funkcion&#x00E1;lis szeletben kap tartalmat.</system:String>
+    <system:String x:Key="Scan.Heading">H&#x00E1;tt&#x00E9;rben fut&#x00F3; vizsg&#x00E1;lat</system:String>
+    <system:String x:Key="Scan.Start">Vizsg&#x00E1;lat ind&#x00ED;t&#x00E1;sa</system:String>
+    <system:String x:Key="Scan.Pause">Sz&#x00FC;net</system:String>
+    <system:String x:Key="Scan.Resume">Folytat&#x00E1;s</system:String>
+    <system:String x:Key="Scan.Cancel">Megszak&#x00ED;t&#x00E1;s</system:String>
+    <system:String x:Key="Browse.Eyebrow">HELYBEN FELFEDEZETT TARTALOM</system:String>
+    <system:String x:Key="Browse.Description">A c&#x00ED;mek f&#x00E1;jln&#x00E9;vb&#x0151;l sz&#x00E1;rmaz&#x00F3;, ellen&#x0151;rizhet&#x0151; jel&#x00F6;ltek. A technikai vizsg&#x00E1;lat &#x00E9;s metaadat-egyeztet&#x00E9;s k&#x00E9;s&#x0151;bbi l&#x00E9;p&#x00E9;s.</system:String>
+    <system:String x:Key="Browse.Empty">Ebben a kateg&#x00F3;ri&#x00E1;ban m&#x00E9;g nincs indexelt m&#x00E9;diaf&#x00E1;jl.</system:String>
 </ResourceDictionary>

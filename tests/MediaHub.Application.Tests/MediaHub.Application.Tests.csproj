@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\MediaHub.Application\MediaHub.Application.csproj" />
     <ProjectReference Include="..\..\src\MediaHub.Domain\MediaHub.Domain.csproj" />
+    <ProjectReference Include="..\..\src\MediaHub.Scanner\MediaHub.Scanner.csproj" />
   </ItemGroup>
 
 </Project>
