@@ -5,6 +5,12 @@
     <ProjectReference Include="..\MediaHub.Domain\MediaHub.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+    <!-- Overrides the vulnerable 2.1.11 native SQLite bundle pulled transitively. -->
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

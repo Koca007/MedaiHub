@@ -7,7 +7,9 @@
     <Color x:Key="Color.Text.Secondary">#B7BECA</Color>
     <Color x:Key="Color.Text.Muted">#778091</Color>
     <Color x:Key="Color.Accent.Primary">#7C9CFF</Color>
+    <Color x:Key="Color.Accent.Hover">#9AB2FF</Color>
     <Color x:Key="Color.Border.Subtle">#2A303D</Color>
+    <Color x:Key="Color.Success">#67D7A5</Color>
 
     <SolidColorBrush x:Key="Brush.Background.Primary" Color="{DynamicResource Color.Background.Primary}" />
     <SolidColorBrush x:Key="Brush.Surface.Primary" Color="{DynamicResource Color.Surface.Primary}" />
@@ -16,7 +18,9 @@
     <SolidColorBrush x:Key="Brush.Text.Secondary" Color="{DynamicResource Color.Text.Secondary}" />
     <SolidColorBrush x:Key="Brush.Text.Muted" Color="{DynamicResource Color.Text.Muted}" />
     <SolidColorBrush x:Key="Brush.Accent.Primary" Color="{DynamicResource Color.Accent.Primary}" />
+    <SolidColorBrush x:Key="Brush.Accent.Hover" Color="{DynamicResource Color.Accent.Hover}" />
     <SolidColorBrush x:Key="Brush.Border.Subtle" Color="{DynamicResource Color.Border.Subtle}" />
+    <SolidColorBrush x:Key="Brush.Success" Color="{DynamicResource Color.Success}" />
 
     <Style TargetType="Window">
         <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI" />
@@ -31,6 +35,17 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Primary}" />
+                <Setter Property="Background" Value="{DynamicResource Brush.Surface.Secondary}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Primary}" />
+                <Setter Property="Background" Value="{DynamicResource Brush.Surface.Secondary}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="PrimaryButtonStyle" TargetType="Button">
@@ -40,6 +55,14 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Cursor" Value="Hand" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Brush.Accent.Hover}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.55" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="SecondaryButtonStyle" TargetType="Button">
@@ -49,5 +72,43 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Subtle}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="CardBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource Brush.Surface.Secondary}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Subtle}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+    </Style>
+
+    <Style x:Key="HeroBorderStyle"
+           TargetType="Border"
+           BasedOn="{StaticResource CardBorderStyle}">
+        <Setter Property="MinHeight" Value="260" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="#202942" />
+                    <GradientStop Offset="0.62" Color="#171B24" />
+                    <GradientStop Offset="1" Color="#12151D" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SearchBoxStyle" TargetType="TextBox">
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Muted}" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Surface.Primary}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Subtle}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CaretBrush" Value="{DynamicResource Brush.Text.Primary}" />
+    </Style>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="MinHeight" Value="40" />
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="Foreground" Value="#11141B" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Text.Primary}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Subtle}" />
     </Style>
 </ResourceDictionary>

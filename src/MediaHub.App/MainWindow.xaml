@@ -3,16 +3,54 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:automation="clr-namespace:System.Windows.Automation;assembly=PresentationCore"
         Title="{DynamicResource App.Title}"
-        Width="1280"
-        Height="720"
-        MinWidth="960"
-        MinHeight="600"
+        Width="1360"
+        Height="820"
+        MinWidth="1024"
+        MinHeight="640"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource Brush.Background.Primary}"
-        Foreground="{DynamicResource Brush.Text.Primary}">
+        Foreground="{DynamicResource Brush.Text.Primary}"
+        KeyboardNavigation.TabNavigation="Cycle">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+        <DataTemplate x:Key="LibraryRootCardTemplate">
+            <Border Margin="0,0,0,12"
+                    Padding="20,17"
+                    Style="{DynamicResource CardBorderStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"
+                                   FontSize="16"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Margin="0,5,0,0"
+                                   Text="{Binding Path}"
+                                   TextTrimming="CharacterEllipsis"
+                                   Foreground="{DynamicResource Brush.Text.Secondary}" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1"
+                                Margin="28,0,0,0"
+                                HorizontalAlignment="Right">
+                        <TextBlock HorizontalAlignment="Right"
+                                   Text="{Binding KindLabel}"
+                                   Foreground="{DynamicResource Brush.Accent.Primary}" />
+                        <TextBlock Margin="0,5,0,0"
+                                   HorizontalAlignment="Right"
+                                   Text="{Binding AvailabilityLabel}"
+                                   Foreground="{DynamicResource Brush.Success}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="224" />
+            <ColumnDefinition Width="232" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -20,91 +58,237 @@
                 Background="{DynamicResource Brush.Surface.Primary}"
                 BorderBrush="{DynamicResource Brush.Border.Subtle}"
                 BorderThickness="0,0,1,0">
-            <DockPanel Margin="24,28">
+            <DockPanel Margin="22,26">
                 <StackPanel DockPanel.Dock="Top">
                     <TextBlock Text="{DynamicResource App.Title}"
                                FontSize="25"
                                FontWeight="SemiBold"
                                Foreground="{DynamicResource Brush.Accent.Primary}" />
-                    <TextBlock Margin="0,4,0,30"
+                    <TextBlock Margin="0,4,0,28"
                                Text="{DynamicResource App.Tagline}"
                                FontSize="12"
                                Foreground="{DynamicResource Brush.Text.Secondary}" />
 
-                    <Button Content="{DynamicResource Navigation.Home}"
+                    <Button Command="{Binding NavigateCommand}"
+                            CommandParameter="Home"
+                            Content="{DynamicResource Navigation.Home}"
                             Style="{DynamicResource NavigationButtonStyle}"
                             automation:AutomationProperties.Name="{DynamicResource Navigation.Home}" />
-                    <Button Content="{DynamicResource Navigation.Movies}"
+                    <Button Command="{Binding NavigateCommand}"
+                            CommandParameter="Movies"
+                            Content="{DynamicResource Navigation.Movies}"
                             Style="{DynamicResource NavigationButtonStyle}" />
-                    <Button Content="{DynamicResource Navigation.Series}"
+                    <Button Command="{Binding NavigateCommand}"
+                            CommandParameter="Series"
+                            Content="{DynamicResource Navigation.Series}"
                             Style="{DynamicResource NavigationButtonStyle}" />
-                    <Button Content="{DynamicResource Navigation.Collections}"
+                    <Button Command="{Binding NavigateCommand}"
+                            CommandParameter="Collections"
+                            Content="{DynamicResource Navigation.Collections}"
                             Style="{DynamicResource NavigationButtonStyle}" />
-                    <Button Content="{DynamicResource Navigation.Playlists}"
+                    <Button Command="{Binding NavigateCommand}"
+                            CommandParameter="Playlists"
+                            Content="{DynamicResource Navigation.Playlists}"
                             Style="{DynamicResource NavigationButtonStyle}" />
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
-                    <Button Content="{DynamicResource Navigation.Settings}"
+                    <Button Command="{Binding NavigateCommand}"
+                            CommandParameter="Settings"
+                            Content="{DynamicResource Navigation.Settings}"
                             Style="{DynamicResource NavigationButtonStyle}" />
-                    <TextBlock Margin="12,20,0,0"
-                               Text="{DynamicResource Status.Foundation}"
+                    <TextBlock Margin="12,18,0,0"
+                               Text="{Binding StatusMessage}"
+                               TextWrapping="Wrap"
                                FontSize="11"
+                               LineHeight="16"
                                Foreground="{DynamicResource Brush.Text.Muted}" />
                 </StackPanel>
             </DockPanel>
         </Border>
 
-        <Grid Grid.Column="1" Margin="40,30,40,40">
+        <Grid Grid.Column="1" Margin="42,30,42,40">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <DockPanel Grid.Row="0" LastChildFill="False">
-                <Button DockPanel.Dock="Right"
-                        Content="{DynamicResource Shell.Notifications}"
-                        Style="{DynamicResource SecondaryButtonStyle}" />
-                <TextBlock Text="{DynamicResource Home.Heading}"
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="340" />
+                </Grid.ColumnDefinitions>
+                <TextBlock VerticalAlignment="Center"
+                           Text="{Binding PageHeading}"
                            FontSize="30"
                            FontWeight="SemiBold" />
-            </DockPanel>
+                <TextBox Grid.Column="1"
+                         Height="42"
+                         Padding="14,10"
+                         automation:AutomationProperties.Name="Keres&#x00E9;s"
+                         IsReadOnly="True"
+                         Text="Keres&#x00E9;s hamarosan..."
+                         Style="{DynamicResource SearchBoxStyle}" />
+            </Grid>
 
-            <Border Grid.Row="1"
-                    Margin="0,38,0,0"
-                    Padding="42"
-                    Background="{DynamicResource Brush.Surface.Secondary}"
-                    BorderBrush="{DynamicResource Brush.Border.Subtle}"
-                    BorderThickness="1"
-                    CornerRadius="18">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Margin="0,34,0,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Visibility="{Binding IsHome, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid>
+                        <Border Padding="48">
+                            <Border.Style>
+                                <Style BasedOn="{StaticResource HeroBorderStyle}" TargetType="Border">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsLibraryEmpty}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <StackPanel VerticalAlignment="Center" MaxWidth="680">
+                                <TextBlock Text="{DynamicResource Onboarding.Eyebrow}"
+                                           FontWeight="SemiBold"
+                                           Foreground="{DynamicResource Brush.Accent.Primary}" />
+                                <TextBlock Margin="0,14,0,0"
+                                           Text="{DynamicResource Onboarding.Heading}"
+                                           FontSize="40"
+                                           FontWeight="SemiBold"
+                                           TextWrapping="Wrap" />
+                                <TextBlock Margin="0,16,0,30"
+                                           Text="{DynamicResource Onboarding.Description}"
+                                           FontSize="17"
+                                           LineHeight="27"
+                                           TextWrapping="Wrap"
+                                           Foreground="{DynamicResource Brush.Text.Secondary}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Width="190"
+                                            Command="{Binding AddFolderCommand}"
+                                            Content="{DynamicResource Onboarding.AddFolder}"
+                                            Style="{DynamicResource PrimaryButtonStyle}" />
+                                    <TextBlock Margin="18,0,0,0"
+                                               VerticalAlignment="Center"
+                                               Text="{DynamicResource Status.LocalFirst}"
+                                               Foreground="{DynamicResource Brush.Text.Muted}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
 
-                    <StackPanel VerticalAlignment="Center" MaxWidth="620">
-                        <TextBlock Text="{DynamicResource Onboarding.Heading}"
-                                   FontSize="38"
-                                   FontWeight="SemiBold"
-                                   TextWrapping="Wrap" />
-                        <TextBlock Margin="0,16,0,30"
-                                   Text="{DynamicResource Onboarding.Description}"
-                                   FontSize="17"
-                                   LineHeight="26"
-                                   TextWrapping="Wrap"
-                                   Foreground="{DynamicResource Brush.Text.Secondary}" />
-                        <Button Width="190"
-                                HorizontalAlignment="Left"
-                                Content="{DynamicResource Onboarding.AddFolder}"
-                                Style="{DynamicResource PrimaryButtonStyle}" />
+                        <StackPanel>
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasLibraryRoots}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <Border Padding="32" Style="{DynamicResource HeroBorderStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock Text="{DynamicResource Home.ReadyHeading}"
+                                                   FontSize="28"
+                                                   FontWeight="SemiBold" />
+                                        <TextBlock Margin="0,9,0,0"
+                                                   Text="{DynamicResource Home.ReadyDescription}"
+                                                   Foreground="{DynamicResource Brush.Text.Secondary}" />
+                                    </StackPanel>
+                                    <Button Grid.Column="1"
+                                            Command="{Binding NavigateCommand}"
+                                            CommandParameter="Settings"
+                                            Content="{DynamicResource Home.ManageLibraries}"
+                                            Style="{DynamicResource SecondaryButtonStyle}" />
+                                </Grid>
+                            </Border>
+
+                            <TextBlock Margin="0,28,0,14"
+                                       Text="{DynamicResource Library.RootsHeading}"
+                                       FontSize="20"
+                                       FontWeight="SemiBold" />
+                            <ItemsControl ItemsSource="{Binding LibraryRoots}"
+                                          ItemTemplate="{StaticResource LibraryRootCardTemplate}" />
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Visibility="{Binding IsSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel>
+                        <Border Padding="28" Style="{DynamicResource CardBorderStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{DynamicResource Library.SettingsHeading}"
+                                               FontSize="20"
+                                               FontWeight="SemiBold" />
+                                    <TextBlock Margin="0,7,28,0"
+                                               Text="{DynamicResource Library.SettingsDescription}"
+                                               TextWrapping="Wrap"
+                                               Foreground="{DynamicResource Brush.Text.Secondary}" />
+                                </StackPanel>
+                                <ComboBox Grid.Column="1"
+                                          Margin="12,0"
+                                          VerticalAlignment="Center"
+                                          ItemsSource="{Binding KindOptions}"
+                                          SelectedItem="{Binding SelectedKind}"
+                                          DisplayMemberPath="Label"
+                                          automation:AutomationProperties.Name="Tartalom t&#x00ED;pusa" />
+                                <Button Grid.Column="2"
+                                        VerticalAlignment="Center"
+                                        Command="{Binding AddFolderCommand}"
+                                        Content="{DynamicResource Onboarding.AddFolder}"
+                                        Style="{DynamicResource PrimaryButtonStyle}" />
+                            </Grid>
+                        </Border>
+
+                        <TextBlock Margin="0,28,0,14"
+                                   Text="{DynamicResource Library.RootsHeading}"
+                                   FontSize="20"
+                                   FontWeight="SemiBold" />
+                        <ItemsControl ItemsSource="{Binding LibraryRoots}"
+                                      ItemTemplate="{StaticResource LibraryRootCardTemplate}" />
+                        <TextBlock Padding="20"
+                                   Text="{DynamicResource Library.EmptySettings}"
+                                   TextAlignment="Center"
+                                   Foreground="{DynamicResource Brush.Text.Muted}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsLibraryEmpty}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </StackPanel>
+                </ScrollViewer>
 
-                    <TextBlock Grid.Row="1"
-                               Text="{DynamicResource Status.LocalFirst}"
-                               Foreground="{DynamicResource Brush.Text.Muted}" />
-                </Grid>
-            </Border>
+                <Border Padding="42"
+                        Style="{DynamicResource CardBorderStyle}"
+                        Visibility="{Binding IsPlaceholder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding PageHeading}"
+                                   HorizontalAlignment="Center"
+                                   FontSize="30"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Margin="0,12,0,0"
+                                   Text="{DynamicResource Shell.Placeholder}"
+                                   Foreground="{DynamicResource Brush.Text.Secondary}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

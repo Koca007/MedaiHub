@@ -35,6 +35,16 @@ npm run edge:lint
 npm run edge:check
 ```
 
+Run the desktop application:
+
+```powershell
+dotnet run --project src/MediaHub.App/MediaHub.App.csproj
+```
+
+Validated library roots are stored in
+`%LOCALAPPDATA%\MediaHub\Data\mediahub.db`. Start with `--safe-mode` to
+keep optional extension startup disabled while diagnosing the application.
+
 ## Hosted Supabase workflow
 
 This checkout is linked through the Supabase CLI credential store. Link metadata under `supabase/.temp/` is deliberately ignored. A local Supabase stack is not required for the current project workflow.
