@@ -333,19 +333,19 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Foreground="{DynamicResource Brush.Text.Secondary}">
-                                        <Run Text="{Binding DiscoveredFiles}" />
+                                        <Run Text="{Binding DiscoveredFiles, Mode=OneWay}" />
                                         <Run Text=" felfedezett" />
                                     </TextBlock>
                                     <TextBlock Grid.Column="1"
                                                Margin="20,0,0,0"
                                                Foreground="{DynamicResource Brush.Success}">
-                                        <Run Text="{Binding IndexedFiles}" />
+                                        <Run Text="{Binding IndexedFiles, Mode=OneWay}" />
                                         <Run Text=" indexelt" />
                                     </TextBlock>
                                     <TextBlock Grid.Column="2"
                                                Margin="20,0,0,0"
                                                Foreground="{DynamicResource Brush.Text.Muted}">
-                                        <Run Text="{Binding SkippedFiles}" />
+                                        <Run Text="{Binding SkippedFiles, Mode=OneWay}" />
                                         <Run Text=" kihagyott" />
                                     </TextBlock>
                                     <TextBlock Grid.Column="3"

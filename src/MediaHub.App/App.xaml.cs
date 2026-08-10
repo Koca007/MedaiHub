@@ -68,20 +68,24 @@ public partial class App : System.Windows.Application, IDisposable
             window.Show();
             await viewModel.InitializeAsync();
         }
-        catch (SqliteException)
+        catch (SqliteException exception)
         {
+            WriteExceptionLog(exception);
             FailStartup("A helyi adatb\u00e1zis nem nyithat\u00f3 meg.");
         }
-        catch (UnauthorizedAccessException)
+        catch (UnauthorizedAccessException exception)
         {
+            WriteExceptionLog(exception);
             FailStartup("A MediaHub nem f\u00e9r hozz\u00e1 a helyi adatmapp\u00e1hoz.");
         }
-        catch (SecurityException)
+        catch (SecurityException exception)
         {
+            WriteExceptionLog(exception);
             FailStartup("A MediaHub nem f\u00e9r hozz\u00e1 a helyi adatmapp\u00e1hoz.");
         }
-        catch (IOException)
+        catch (IOException exception)
         {
+            WriteExceptionLog(exception);
             FailStartup("A helyi adatok inicializ\u00e1l\u00e1sa sikertelen.");
         }
     }
@@ -117,12 +121,32 @@ public partial class App : System.Windows.Application, IDisposable
         DispatcherUnhandledExceptionEventArgs e)
     {
         _ = sender;
+        WriteExceptionLog(e.Exception);
         MessageBox.Show(
             "V\u00e1ratlan hiba t\u00f6rt\u00e9nt. Az adataid a helyi adatb\u00e1zisban megmaradtak.",
             "MediaHub",
             MessageBoxButton.OK,
             MessageBoxImage.Error);
         e.Handled = true;
+        Current.Shutdown(-1);
+    }
+
+    private static void WriteExceptionLog(Exception exception)
+    {
+        try
+        {
+            var paths = LocalDataPaths.CreateDefault();
+            Directory.CreateDirectory(paths.LogsDirectory);
+            var logPath = Path.Combine(paths.LogsDirectory, "startup-errors.log");
+            File.AppendAllText(
+                logPath,
+                $"[{DateTimeOffset.UtcNow:O}]{Environment.NewLine}" +
+                $"{exception}{Environment.NewLine}{Environment.NewLine}");
+        }
+        catch
+        {
+            // Error reporting must never replace the original startup failure.
+        }
     }
 
     private void FailStartup(string message)
