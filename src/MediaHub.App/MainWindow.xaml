@@ -1,0 +1,110 @@
+<Window x:Class="MediaHub.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:automation="clr-namespace:System.Windows.Automation;assembly=PresentationCore"
+        Title="{DynamicResource App.Title}"
+        Width="1280"
+        Height="720"
+        MinWidth="960"
+        MinHeight="600"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource Brush.Background.Primary}"
+        Foreground="{DynamicResource Brush.Text.Primary}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="224" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Background="{DynamicResource Brush.Surface.Primary}"
+                BorderBrush="{DynamicResource Brush.Border.Subtle}"
+                BorderThickness="0,0,1,0">
+            <DockPanel Margin="24,28">
+                <StackPanel DockPanel.Dock="Top">
+                    <TextBlock Text="{DynamicResource App.Title}"
+                               FontSize="25"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource Brush.Accent.Primary}" />
+                    <TextBlock Margin="0,4,0,30"
+                               Text="{DynamicResource App.Tagline}"
+                               FontSize="12"
+                               Foreground="{DynamicResource Brush.Text.Secondary}" />
+
+                    <Button Content="{DynamicResource Navigation.Home}"
+                            Style="{DynamicResource NavigationButtonStyle}"
+                            automation:AutomationProperties.Name="{DynamicResource Navigation.Home}" />
+                    <Button Content="{DynamicResource Navigation.Movies}"
+                            Style="{DynamicResource NavigationButtonStyle}" />
+                    <Button Content="{DynamicResource Navigation.Series}"
+                            Style="{DynamicResource NavigationButtonStyle}" />
+                    <Button Content="{DynamicResource Navigation.Collections}"
+                            Style="{DynamicResource NavigationButtonStyle}" />
+                    <Button Content="{DynamicResource Navigation.Playlists}"
+                            Style="{DynamicResource NavigationButtonStyle}" />
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+                    <Button Content="{DynamicResource Navigation.Settings}"
+                            Style="{DynamicResource NavigationButtonStyle}" />
+                    <TextBlock Margin="12,20,0,0"
+                               Text="{DynamicResource Status.Foundation}"
+                               FontSize="11"
+                               Foreground="{DynamicResource Brush.Text.Muted}" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="40,30,40,40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" LastChildFill="False">
+                <Button DockPanel.Dock="Right"
+                        Content="{DynamicResource Shell.Notifications}"
+                        Style="{DynamicResource SecondaryButtonStyle}" />
+                <TextBlock Text="{DynamicResource Home.Heading}"
+                           FontSize="30"
+                           FontWeight="SemiBold" />
+            </DockPanel>
+
+            <Border Grid.Row="1"
+                    Margin="0,38,0,0"
+                    Padding="42"
+                    Background="{DynamicResource Brush.Surface.Secondary}"
+                    BorderBrush="{DynamicResource Brush.Border.Subtle}"
+                    BorderThickness="1"
+                    CornerRadius="18">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel VerticalAlignment="Center" MaxWidth="620">
+                        <TextBlock Text="{DynamicResource Onboarding.Heading}"
+                                   FontSize="38"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="Wrap" />
+                        <TextBlock Margin="0,16,0,30"
+                                   Text="{DynamicResource Onboarding.Description}"
+                                   FontSize="17"
+                                   LineHeight="26"
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource Brush.Text.Secondary}" />
+                        <Button Width="190"
+                                HorizontalAlignment="Left"
+                                Content="{DynamicResource Onboarding.AddFolder}"
+                                Style="{DynamicResource PrimaryButtonStyle}" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1"
+                               Text="{DynamicResource Status.LocalFirst}"
+                               Foreground="{DynamicResource Brush.Text.Muted}" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

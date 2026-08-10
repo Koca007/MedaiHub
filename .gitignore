@@ -1,0 +1,31 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Supabase local state and generated artifacts
+supabase/.branches/
+supabase/.temp/
+
+# .NET build outputs
+bin/
+obj/
+artifacts/
+
+# IDE and user-local files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Test output
+TestResults/
+*.trx
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# Node tooling (Supabase CLI)
+node_modules/

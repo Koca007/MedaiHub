@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  dotnet:
+    name: .NET build and tests
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.302
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: dotnet restore MediaHub.sln
+      - run: dotnet build MediaHub.sln --configuration Release --no-restore
+      - run: dotnet test MediaHub.sln --configuration Release --no-build --logger "trx;LogFileName=tests.trx"
+
+  edge-functions:
+    name: Edge Function checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: 2.9.5
+          cache: true
+      - run: deno install --config supabase/functions/deno.json
+      - run: deno fmt --check supabase/functions
+      - run: deno lint --config supabase/functions/deno.json supabase/functions
+      - run: deno check --config supabase/functions/deno.json supabase/functions/get-media-metadata/index.ts supabase/functions/get-episode-release-state/index.ts supabase/functions/check-release-compatibility/index.ts

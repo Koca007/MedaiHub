@@ -1,0 +1,19 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <system:String x:Key="App.Title">MediaHub</system:String>
+    <system:String x:Key="App.Tagline">A saját médiatárad</system:String>
+    <system:String x:Key="Navigation.Home">Kezdőlap</system:String>
+    <system:String x:Key="Navigation.Movies">Filmek</system:String>
+    <system:String x:Key="Navigation.Series">Sorozatok</system:String>
+    <system:String x:Key="Navigation.Collections">Gyűjtemények</system:String>
+    <system:String x:Key="Navigation.Playlists">Lejátszási listák</system:String>
+    <system:String x:Key="Navigation.Settings">Beállítások</system:String>
+    <system:String x:Key="Shell.Notifications">Értesítések</system:String>
+    <system:String x:Key="Home.Heading">Kezdőlap</system:String>
+    <system:String x:Key="Onboarding.Heading">Építsd fel a saját médiatáradat</system:String>
+    <system:String x:Key="Onboarding.Description">Adj hozzá egy helyi vagy hálózati mappát. A MediaHub a háttérben rendezi a filmeket és sorozatokat, miközben a lejátszás helyben és internet nélkül is elérhető marad.</system:String>
+    <system:String x:Key="Onboarding.AddFolder">Mappa hozzáadása</system:String>
+    <system:String x:Key="Status.Foundation">Fejlesztési alapverzió</system:String>
+    <system:String x:Key="Status.LocalFirst">Helyi működés • fiók nélkül • a te adataid</system:String>
+</ResourceDictionary>

@@ -1,0 +1,241 @@
+{
+  "project": "MediaHub",
+  "document_set": "MediaHub Project Bible",
+  "version": "1.2-finalized-product-scope",
+  "generated_at": "2026-08-08",
+  "file_count": 37,
+  "files": [
+    {
+      "name": "00_Documentation_Index.md",
+      "bytes": 10092,
+      "words": 1289,
+      "sha256": "994ff1e044da00bb536fbae7aa1d7c43e960d462c1448c7ebbe9d0fb592c0ce1"
+    },
+    {
+      "name": "01_Product_Vision_and_Scope.md",
+      "bytes": 11561,
+      "words": 1650,
+      "sha256": "3467648a2a9524166c56c078a68b4d2c1adb81b43b75c0293f783c6a67c82c76"
+    },
+    {
+      "name": "02_Product_Requirements_and_User_Flows.md",
+      "bytes": 15775,
+      "words": 2219,
+      "sha256": "001cb1de9b1683459af3aa605557397b22f5461cc87e961de6d6f8d75a57bac8"
+    },
+    {
+      "name": "03_Nonfunctional_Requirements.md",
+      "bytes": 8474,
+      "words": 1166,
+      "sha256": "456bb669e4b26dbd7886538e205d53c405a18acb2c5d920b1241d6b14ef6d583"
+    },
+    {
+      "name": "04_System_Architecture.md",
+      "bytes": 13386,
+      "words": 1654,
+      "sha256": "6c7ef1e4d338e137d35f2036c432269f302db82d25db5be9f79cef4a8780406a"
+    },
+    {
+      "name": "05_Domain_Model_and_Database.md",
+      "bytes": 14133,
+      "words": 2026,
+      "sha256": "d1d63c01179769b083a4a9c83ae776ef2343eb1c5cf8670f14ae24732b3c8c60"
+    },
+    {
+      "name": "06_Desktop_UI_UX_Specification.md",
+      "bytes": 10366,
+      "words": 1430,
+      "sha256": "3592799673a90d41808a683972f2e7c9fba81f54aca85645c7c11a39d795e3b2"
+    },
+    {
+      "name": "07_Player_Engine.md",
+      "bytes": 9371,
+      "words": 1279,
+      "sha256": "d22e95dba22c1efb8b82fcc266f0c7fadd5119356de79827d0afdf41aff35d27"
+    },
+    {
+      "name": "08_Library_Scanner_and_Media_Identification.md",
+      "bytes": 8426,
+      "words": 1221,
+      "sha256": "efe98ea3f9ba254916bea5a70882248f515b0184beab7b7eeb681a92a7b52385"
+    },
+    {
+      "name": "09_Metadata_Artwork_and_Subtitles.md",
+      "bytes": 8481,
+      "words": 1206,
+      "sha256": "1addeb6cef8e83a717c58727faa43dfa473ede46e48cc1226e03e6451c876179"
+    },
+    {
+      "name": "10_Watch_Tracking_Collections_Playlists_Statistics.md",
+      "bytes": 9112,
+      "words": 1328,
+      "sha256": "a1e4278136f4d9973edc4f946e13954cf88becf25415900d5aed16f439746bfd"
+    },
+    {
+      "name": "11_Network_Shares_and_Storage.md",
+      "bytes": 5505,
+      "words": 801,
+      "sha256": "96168a2073d7b2a530c0af58d112cd838b6c8d45232063c949ebfea445d7f168"
+    },
+    {
+      "name": "12_Plugin_Provider_and_Extension_SDK.md",
+      "bytes": 9008,
+      "words": 1164,
+      "sha256": "83b45144c19afbbdee6813bff877363deafff7138000b2299ba10dd655e4669d"
+    },
+    {
+      "name": "13_Download_Manager_and_Acquisition_Workflows.md",
+      "bytes": 6583,
+      "words": 945,
+      "sha256": "a92d32140698d0ea9f2650c93097d378d48dbd8bd5186bfdf0deef3c04b341f4"
+    },
+    {
+      "name": "14_AI_Recommendation_Engine.md",
+      "bytes": 11042,
+      "words": 1604,
+      "sha256": "010fedb3c69461fe918238ffa8832becb5812c0883dc1e039391297a057d2f6f"
+    },
+    {
+      "name": "15_Security_Privacy_and_Threat_Model.md",
+      "bytes": 11023,
+      "words": 1520,
+      "sha256": "9a03cf97bffcb5d3f99a0431754113a2e4a7145faaa994362e7d9ad1b6e51bf9"
+    },
+    {
+      "name": "16_Localization_Themes_and_Accessibility.md",
+      "bytes": 6791,
+      "words": 937,
+      "sha256": "e61c09ee6d399041f66f8f41e5a15e044f5007d6c26cbf1024b90ab5f04aea3c"
+    },
+    {
+      "name": "17_Application_Settings_Logging_and_Diagnostics.md",
+      "bytes": 7731,
+      "words": 1095,
+      "sha256": "1c68650e71f72f8c216c85323e1f5e7d470fcabff894d0bf724cfb35bfaac269"
+    },
+    {
+      "name": "18_Update_Deployment_and_Release_Management.md",
+      "bytes": 7350,
+      "words": 1040,
+      "sha256": "2ab41b24af6b2572c3d575ecd9ee38cb99764f3c4b5d45070a92ae6b06c3171f"
+    },
+    {
+      "name": "19_Testing_QA_and_Acceptance.md",
+      "bytes": 8975,
+      "words": 1278,
+      "sha256": "e99c447ea647449792f422c4eae670d54d64422892f6880dfef8e1bcb3b6dc4a"
+    },
+    {
+      "name": "20_Developer_Standards_and_Repository_Workflow.md",
+      "bytes": 8293,
+      "words": 1141,
+      "sha256": "16a29886244861edd256575fdb6852a9983300b021603b73895f669c31d6d879"
+    },
+    {
+      "name": "21_API_Contracts_Events_and_Sequence_Flows.md",
+      "bytes": 11544,
+      "words": 1218,
+      "sha256": "6eaf475602bf36cc594e81782b0b6afe0767051012a1e8753bf6f0e8a58c9e46"
+    },
+    {
+      "name": "22_Roadmap_Commercialization_and_Product_Operations.md",
+      "bytes": 9076,
+      "words": 1290,
+      "sha256": "e62fc0ac01b09e084b6cbb77197f5f8236a069fc7092b29601da125673583a2e"
+    },
+    {
+      "name": "23_Architecture_Decision_Records.md",
+      "bytes": 13910,
+      "words": 1742,
+      "sha256": "4f0e89b44c55c7842e3f06ebf41e65d3fe2580195f218f1ccfefee8b72b7bd65"
+    },
+    {
+      "name": "24_Glossary_and_Traceability_Matrix.md",
+      "bytes": 9831,
+      "words": 1580,
+      "sha256": "38f3d313d212d894f0717260e6b68eea7ebeaefec09f12b8e158b75d91d3efe2"
+    },
+    {
+      "name": "25_UI_Component_Catalog.md",
+      "bytes": 8179,
+      "words": 1196,
+      "sha256": "e705b17869fc5ac1fabce174f75f7794643c8702dc006e93bc08824cdab90b4a"
+    },
+    {
+      "name": "26_Database_Physical_Schema_and_Migrations.md",
+      "bytes": 12923,
+      "words": 1681,
+      "sha256": "bb7e28b91ec8b49938a1a08437f05e04bb461688ef2b00b88f1a9bcabba42786"
+    },
+    {
+      "name": "27_Background_Jobs_Caching_and_Performance.md",
+      "bytes": 7673,
+      "words": 1114,
+      "sha256": "4314b83efa214b79134c1c8336cc4eae5f89100f333351a244023a54fc8e20c6"
+    },
+    {
+      "name": "28_Error_Catalog_and_Recovery_Runbooks.md",
+      "bytes": 7911,
+      "words": 1205,
+      "sha256": "468b5c17605d262adf4d2f218f9975634c2d0e0a2054fe25761196439fbef5ce"
+    },
+    {
+      "name": "29_Implementation_Backlog_and_Epics.md",
+      "bytes": 10442,
+      "words": 1458,
+      "sha256": "95fe41faa5622f1c5c09d81be2b1c64eea17f00f9ba34766585d021c41d63bac"
+    },
+    {
+      "name": "30_File_Naming_and_Parsing_Rulebook.md",
+      "bytes": 6513,
+      "words": 909,
+      "sha256": "100f4ca5002c6cce1e393646a16f1e8e77d78f68204b8c0f7efb2100ade1fc66"
+    },
+    {
+      "name": "31_Configuration_Schema_and_Defaults.md",
+      "bytes": 8507,
+      "words": 964,
+      "sha256": "dfdbdd9c288814fbb09b9c1f68b5a69988f2a6b7c6e244a13176e73fb3635e87"
+    },
+    {
+      "name": "32_Plugin_SDK_Examples.md",
+      "bytes": 7929,
+      "words": 854,
+      "sha256": "29c7eaf61142d5279f8a5625b78a1538340ebf88291ee13c917ecdb8aab11982"
+    },
+    {
+      "name": "33_Detailed_Test_Case_Catalog.md",
+      "bytes": 12416,
+      "words": 1633,
+      "sha256": "4c32432c803f5dc4229ac26812246f6bd174e3a59c44ab8de21f691c91f26a31"
+    },
+    {
+      "name": "34_User_Data_Portability_and_Disaster_Recovery.md",
+      "bytes": 8711,
+      "words": 1225,
+      "sha256": "3ecf45bcd2eed704a521d4d85c24aaa34731695f0162f1259da27883ff535054"
+    },
+    {
+      "name": "35_Development_Backend_Supabase_and_Synchronization.md",
+      "bytes": 16454,
+      "words": 2253,
+      "sha256": "52ffb9b2dfb63cf016054db7d847c7e2cbf4a19ab03ea672bb39fe4ec1519d58"
+    },
+    {
+      "name": "36_Supabase_PostgreSQL_RLS_and_Edge_Functions.md",
+      "bytes": 23372,
+      "words": 2898,
+      "sha256": "ec9654afd4fae6b3ff647c9160e5cb24276f9b18e92865d1109460127c7d9044"
+    }
+  ],
+  "total_words": 51213,
+  "approximate_printed_pages_at_450_words": 113.8,
+  "revision_summary": [
+    "Windows 1.0 locked as a downloadable, signed, installable Windows 10/11 x64 production application with a Hungarian UI.",
+    "Version 1.0 scope locked for automatic collections, approved remote metadata/artwork, daily provider-confirmed episode monitoring, Picture-in-Picture, and screenshot scene jump.",
+    "AI recommendations, online subtitle providers, authorized acquisition, public personal synchronization, and external .mhpkg installation deferred until post-1.0 milestones.",
+    "Favorites separated from ratings; notes standardized as compact plain text with a 10,000-character safety limit.",
+    "Playlist continuation precedence, configurable episode autoplay, multi-episode file mappings, metadata language fallback, synthetic Development/Test identity, and synchronization scope finalized.",
+    "Supabase ownership constraints, note conflict retention, RLS boundaries, public non-personal endpoints, configuration, tests, traceability, and release gates aligned with the v1.2 decisions."
+  ]
+}

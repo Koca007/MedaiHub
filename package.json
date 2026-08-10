@@ -1,0 +1,31 @@
+{
+  "name": "mediahub",
+  "version": "0.0.0",
+  "description": "MediaHub development tooling",
+  "scripts": {
+    "build": "dotnet build MediaHub.sln --configuration Release",
+    "test": "dotnet test MediaHub.sln --configuration Release",
+    "check": "npm run build && npm run test && npm run edge:check",
+    "edge:fmt": "deno fmt supabase/functions",
+    "edge:fmt:check": "deno fmt --check supabase/functions",
+    "edge:lint": "deno lint --config supabase/functions/deno.json supabase/functions",
+    "edge:check": "deno check --config supabase/functions/deno.json supabase/functions/get-media-metadata/index.ts supabase/functions/get-episode-release-state/index.ts supabase/functions/check-release-compatibility/index.ts",
+    "supabase:init": "supabase init",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:status": "supabase status",
+    "supabase:dry-run": "supabase db push --linked --dry-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Koca007/MedaiHub.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Koca007/MedaiHub/issues"
+  },
+  "homepage": "https://github.com/Koca007/MedaiHub#readme",
+  "private": true,
+  "devDependencies": {
+    "supabase": "2.113.0"
+  }
+}
